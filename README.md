@@ -14,6 +14,20 @@ This project demonstrates a simple biometric workflow:
 
 ---
 
+## 🌐 Live Demo
+
+This project is deployed using **GitHub Pages**.
+
+🔗 Access it here:
+
+```
+https://YOUR_USERNAME.github.io/YOUR_REPOSITORY_NAME/
+```
+
+(Replace with your actual link.)
+
+---
+
 ## 🚀 Features
 
 - Live webcam streaming  
@@ -26,7 +40,7 @@ This project demonstrates a simple biometric workflow:
 - Match highlighting  
 - Alert log panel  
 - LocalStorage-based persistence  
-- No backend required  
+- Fully static deployment (no backend required)
 
 ---
 
@@ -62,72 +76,67 @@ The project loads the following face-api.js models:
 ```
 face-demo/
 │
-├── index.html
-├── styles.css
-├── app.js
-├── models/
-│   ├── tiny_face_detector_model-weights_manifest.json
-│   ├── face_landmark_68_model-weights_manifest.json
-│   ├── face_recognition_model-weights_manifest.json
-│   └── (model shard files)
+├── docs/                # Deployed via GitHub Pages
+│   ├── index.html
+│   ├── style.css
+│   ├── scripts.js
+│   ├── face-api.min.js
+│   └── models/
+│       ├── tiny_face_detector_model-weights_manifest.json
+│       ├── face_landmark_68_model-weights_manifest.json
+│       ├── face_recognition_model-weights_manifest.json
+│       └── (model shard files)
 │
-└── README.md
+├── server.js            # Optional (for local Express development)
+├── package.json
+├── README.md
+└── .gitignore
 ```
 
 ---
 
-## 🛠 Installation & Setup (Windows)
+## 🛠 Local Development
 
-### 1️⃣ Install Node.js (LTS)
+Although the live version is hosted via GitHub Pages, you can still run it locally.
 
-Download and install from:  
-https://nodejs.org/
-
-### 2️⃣ Navigate to project folder
+### Option 1 — Static Server (Recommended)
 
 ```bash
-cd path\to\face-demo
+npx http-server docs
 ```
 
-### 3️⃣ Start local HTTP server
-
-```bash
-npx http-server .
-```
-
-Open in browser:
+Then open:
 
 ```
 http://127.0.0.1:8080
 ```
 
-⚠️ Important: Do NOT open `index.html` directly.  
-Models must be loaded via HTTP.
+### Option 2 — Express (Optional)
+
+If you want to use your local Express server:
+
+```bash
+node server.js
+```
+
+Note: GitHub Pages does **not** run Express.  
+The hosted version is purely static.
 
 ---
 
-## 🎯 Usage
+## 🌍 Deployment (GitHub Pages)
 
-### Enroll a Person
+This project is deployed from the `/docs` folder.
 
-1. Enter a name in the input field.  
-2. Click **Enroll**.  
-3. Keep your face steady in front of the camera.  
-4. Multiple samples will be captured automatically.  
+To enable deployment:
 
-### Start Scan
+1. Go to **Repository → Settings → Pages**
+2. Under **Source**, select:
+   - Branch: `main`
+   - Folder: `/docs`
+3. Save
 
-1. Click **Start Scan**.  
-2. Detected faces will be matched against enrolled profiles.  
-3. Matches are highlighted and logged.  
-
-### Stop Scan
-
-Stops the scanning loop.
-
-### Clear Enrollments
-
-Deletes all stored face data from browser localStorage.
+GitHub will automatically generate a public URL.
 
 ---
 
@@ -140,7 +149,7 @@ Default: `0.45`
 Lower value → stricter matching  
 Higher value → more tolerant matching (may increase false positives)
 
-You can adjust this directly in the UI.
+Adjustable directly in the UI.
 
 ### Enrollment Samples
 
@@ -152,9 +161,9 @@ Increasing samples improves recognition stability.
 
 ## 🔐 Data Storage
 
-- All face data is stored locally in browser `localStorage`.  
-- No data is sent to any server.  
-- Clearing browser storage will remove all enrollments.  
+- All face data is stored locally in browser `localStorage`.
+- No data is sent to any server.
+- Clearing browser storage removes all enrollments.
 
 ---
 
