@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LOAG — Enroll & Scan</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- face-api.js (browser) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+  <script defer src="scripts.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="title">
+      <div class="h1">LOAG</div>
+      <div class="sub">Enroll → Scan (runs in browser)</div>
+    </div>
+    <div class="status">
+      <span class="pill" id="modelStatus">Loading models…</span>
+      <span class="pill" id="camStatus">Camera: off</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- Left: video + overlay -->
+    <section class="left">
+      <div class="videoWrap">
+        <video id="video" autoplay muted playsinline></video>
+        <canvas id="overlay"></canvas>
+      </div>
+
+      <div class="controls">
+        <div class="row">
+          <input id="enrollName" type="text" placeholder="Enter name to enroll (e.g., Azim)" />
+          <button id="btnEnroll" disabled>Enroll</button>
+          <button id="btnScan" disabled>Start Scan</button>
+          <button id="btnStop" disabled>Stop</button>
+        </div>
+
+        <div class="row small">
+          <label>
+            Threshold:
+            <input id="threshold" type="number" step="0.01" min="0.30" max="0.80" value="0.45" />
+          </label>
+          <label>
+            Enroll samples:
+            <input id="samples" type="number" step="1" min="3" max="15" value="5" />
+          </label>
+          <button id="btnClear">Clear Enrollments</button>
+        </div>
+
+        <div class="hint">
+          Tip: Use good lighting. Enroll with your face centered, then scan.
+        </div>
+      </div>
+    </section>
+
+    <!-- Right: info panel -->
+    <aside class="right">
+      <div class="card">
+        <div class="cardTitle">Enrolled</div>
+        <div id="enrolledList" class="list"></div>
+      </div>
+
+      <div class="card">
+        <div class="cardTitle">Last Match</div>
+        <div id="lastMatch" class="mono">—</div>
+      </div>
+
+      <div class="card">
+        <div class="cardTitle">Alerts</div>
+        <div id="alerts" class="alerts"></div>
+      </div>
+
+      <div class="card note">
+        <div class="cardTitle">Demo Note</div>
+        <div class="small">
+          Use only consenting volunteers / your own images. This is a UI prototype demo.
+        </div>
+      </div>
+    </aside>
+  </main>
+</body>
+</html>
