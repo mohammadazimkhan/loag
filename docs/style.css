@@ -200,4 +200,9 @@ button.danger { border-color: rgba(255,78,78,0.6); }
 
 @media (max-width: 980px) {
   .layout { grid-template-columns: 1fr; }
+  .videoWrap {
+    height: 50vh;        /* half the phone screen */
+    aspect-ratio: auto;  /* let height control it */
+    max-width: none;
+  }
 }
